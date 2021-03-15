@@ -1,0 +1,31 @@
+<mat-card>
+    <mat-card-header>
+      <section>
+        <img mat-card-sm-image class="img-card" src={{item.thumbnail}}>
+        <article>
+          <mat-card-title>{{item.title}}</mat-card-title>
+          <mat-card-subtitle> <span *ngIf="!item.price">Preço a combinar</span> {{item.price | currency:item.currency_id }}</mat-card-subtitle>
+        </article>
+      </section>
+    </mat-card-header>
+    <mat-card-content>
+      <p *ngIf="item.sold_quantity">Vendidos: {{item.sold_quantity}}</p>
+      <p *ngIf="item.available_quantity">Disponível: {{item.available_quantity}}</p>
+      <p *ngIf="item.stop_time">Valido até {{item.stop_time | date | uppercase}}</p>
+      <article *ngIf="item.seller && item.seller.seller_reputation"> Reputação do vendedor: 
+        <section style="float: right;" *ngIf="item.seller.seller_reputation.level_id" [ngSwitch]="item.seller.seller_reputation.level_id" aria-label="reputação do vendedor">
+          <mat-icon matTooltip="Reputação ótima" aria-hidden="false" aria-label="Reputação ótima"  *ngSwitchCase="'5_green'" color="primary">sentiment_very_satisfied</mat-icon>
+          <mat-icon matTooltip="Reputação boa" aria-hidden="false" aria-label="Reputação boa"  *ngSwitchCase="'4_light_green'" color="primary">sentiment_satisfied</mat-icon>
+          <mat-icon matTooltip="Reputação média" aria-hidden="false" aria-label="Reputação média"  *ngSwitchCase="'3_yellow'" color="primary">sentiment_neutral</mat-icon>
+          <mat-icon matTooltip="Reputação ruim" aria-hidden="false" aria-label="Reputação ruim"  *ngSwitchCase="'2_orange'" color="primary">sentiment_dissatisfied</mat-icon>
+          <mat-icon matTooltip="Reputação péssima" aria-hidden="false" aria-label="Reputação péssima"  *ngSwitchCase="'1_red'" color="primary">sentiment_very_dissatisfied</mat-icon>
+          <mat-icon matTooltip="Sem reputação" aria-hidden="false" aria-label="Sem reputação"  *ngSwitchDefault>do_disturb</mat-icon>
+        </section>
+      </article>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button mat-button color="primary" (click)="ifoProduct()">Detalhes</button>
+      <button mat-button color="primary" (click)="reviews()">Opiniões</button>
+      <button mat-button color="primary" (click)="clone()">Clonar</button>
+    </mat-card-actions>
+</mat-card>

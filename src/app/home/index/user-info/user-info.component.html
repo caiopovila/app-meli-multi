@@ -1,0 +1,3 @@
+<app-balance *ngIf="balance || questions || visits" [balance]="balance" [questions]="questions" [visits]="visits"></app-balance>
+<app-status *ngIf="data" [status]="data.status"></app-status>
+<app-notice *ngIf="notices" [notices]="notices"></app-notice>

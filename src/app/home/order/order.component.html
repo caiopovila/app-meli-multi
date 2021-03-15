@@ -1,0 +1,63 @@
+<mat-card class="center">
+    <mat-card-title> 
+        <mat-icon color="primary">point_of_sale</mat-icon> 
+        Obter vendas de: 
+    </mat-card-title>
+    <mat-form-field>
+        <mat-label>Cliente</mat-label>
+        <mat-select [(value)]="clientSelected" (selectionChange)="getOrders(clientSelected)" required>
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let client of listClients" [value]="client.user_id">
+                {{client.nickname}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    
+    <button mat-icon-button  matTooltip="configurações" aria-label="Configurar vendas" (click)="openSettingDialog()" color="primary">
+        <mat-icon>settings</mat-icon>
+    </button>
+
+    <section>
+        <mat-form-field class='input_search'>
+            <mat-label>Pesquisa por titulo do item</mat-label>
+            <input matInput #iput type="search" (keyup.enter)="getOrders(clientSelected, iput.value)" placeholder="Ex. Lampada azul">
+        </mat-form-field>
+        <button mat-icon-button  matTooltip="Pesquisar" aria-label="Pesquisar" (click)="getOrders(clientSelected, iput.value)" color="primary">
+            <mat-icon>search</mat-icon>
+        </button>
+        <button mat-icon-button  matTooltip="Adicionar filtro" aria-label="Adicionar filtro" (click)="openFilterDialog()" color="primary">
+            <mat-icon>filter_alt</mat-icon>
+        </button>
+    </section>
+
+</mat-card>
+
+<section *ngIf="listOrders">
+    <mat-paginator 
+        [length]="totalResults"
+        [pageSize]="params.limit"
+        [pageSizeOptions]="pageSizeOptions"
+        (page)="params.limit = $event.pageSize; params.offset = $event.pageSize * $event.pageIndex; getOrders(clientSelected)">
+    </mat-paginator>
+
+    <mat-card *ngFor="let order of listOrders">
+        <mat-card-header>
+            <mat-card-title>Comprador: {{order.buyer.nickname}}</mat-card-title>
+            <mat-card-subtitle>{{order.buyer.email}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+           <p>Valor total: {{order.total_amount | currency: order.currency_id}}</p> 
+           <p>Status: {{order.status}}</p>
+           <p>Comentários: {{order.comments || '0'}}</p>
+           <p>Pagamento: {{order.payments.status}}</p>
+        </mat-card-content>
+        <mat-card-actions align="end">
+            <button mat-button (click)="getMessages(order)">
+                <span *ngIf="!order.pack_id"> Enviar mensagem </span> 
+                <span *ngIf="order.pack_id"> Mensagens </span>
+            </button>
+            <button mat-button (click)="getItems(order)">Itens</button>
+            <!-- <button mat-button >Detalhes</button> -->
+        </mat-card-actions>
+    </mat-card>
+</section>

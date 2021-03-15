@@ -1,0 +1,60 @@
+<mat-card class="center">
+    <mat-card-title> 
+        <mat-icon color="primary">feedback</mat-icon> 
+        Obter Reclamações de: 
+    </mat-card-title>
+    <mat-form-field>
+        <mat-label>Cliente</mat-label>
+        <mat-select [(value)]="clientSelected" (selectionChange)="getClaims()" required>
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let client of listClients" [value]="client.user_id">
+                {{client.nickname}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <button mat-icon-button  matTooltip="Adicionar filtro" aria-label="Adicionar filtro" (click)="openFilterDialog()" color="primary">
+        <mat-icon>filter_alt</mat-icon>
+    </button>
+</mat-card>
+
+<section *ngIf="listClaims">
+    <mat-paginator 
+        [length]="params.total"
+        [pageSize]="params.limit"
+        [pageSizeOptions]="pageSizeOptions"
+        (page)="params.limit = $event.pageSize; params.offset = $event.pageSize * $event.pageIndex; getClaims()">
+    </mat-paginator>
+
+    <mat-card *ngFor="let claim of listClaims">
+        <mat-card-header>
+            <mat-card-title>
+                #{{claim.id}} - {{claim.status}} {{claim.reason_id | reasonClaim}}
+            </mat-card-title>
+            <mat-card-subtitle>
+                {{claim.stage}} última atualização: {{claim.last_updated | date: 'fullDate'}}
+            </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <p> referente: {{claim.resource}}  </p>
+            <p>{{claim.id | expectedResolutionClaim: clientSelected}} <button mat-button color="primary" (click)="acceptReason(claim.id)">Aceitar</button></p>
+            <mat-list *ngIf="claim.players && claim.players.length > 0">
+                <mat-list-item *ngFor="let player of claim.players"> 
+                    {{player.role}}: #{{player.user_id}} 
+                    <ul *ngIf="player.available_actions && player.available_actions.length > 0">
+                        <li *ngFor="let action of player.available_actions">
+                            Ação: {{action.action | playerActionClaim}} tempo: {{action.due_date | date | uppercase}} <span *ngIf="action.mandatory">(Obrigatório)</span>
+                        </li>
+                    </ul>
+                </mat-list-item>
+            </mat-list>
+            <section *ngFor="let resolution of (claim.reason_id | reasonClaimResolution)">
+                <button mat-raised-button color="primary" (click)="sendResolutionCLaim(resolution.id, claim.id)" *ngIf="resolution.name && resolution.id">{{resolution.name}}</button>
+            </section>
+        </mat-card-content>
+        <mat-card-actions align="end">
+            <button mat-button (click)="openDialogMessages(claim)">Mensagens</button>
+            <button mat-button (click)="openDialogDetails(claim.reason_id)">Detalhes</button>
+            <button mat-button color="warn" (click)="mediation(claim.id)">Mediação</button>
+        </mat-card-actions>
+    </mat-card>
+</section>

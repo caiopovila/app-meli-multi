@@ -1,0 +1,50 @@
+<h2 mat-dialog-title>
+    <mat-icon color="primary">reviews</mat-icon>
+    Opiniões de #{{itemId}}
+</h2>
+<mat-dialog-content>
+    <mat-card *ngIf="reviews">
+        <mat-card-header>
+            <mat-card-title>
+                <mat-icon color="accent">star_rate</mat-icon>
+                <mat-icon color="accent">star_rate</mat-icon>
+                <mat-icon color="accent">star_rate</mat-icon>
+                <mat-icon color="accent">star_rate</mat-icon>
+                <mat-icon color="accent">star_rate</mat-icon>
+                &nbsp;
+                {{reviews.rating_average}}
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-card *ngFor="let review of reviews.reviews">
+                <mat-card-header>
+                    <mat-card-title>
+                        {{review.title}}
+                    </mat-card-title>
+                    <mat-card-subtitle>
+                        {{review.date_created | date}} #{{review.id}}
+                    </mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>{{review.content}}</p>
+                    <p>data da compra: {{review.buying_date | date}}</p>
+                    <p><mat-icon color="accent">star_rate</mat-icon> {{review.rate}}</p>
+                </mat-card-content>
+                <mat-card-actions align="end">
+                    <mat-icon color="primary">thumb_up</mat-icon>&nbsp;{{review.likes}}&nbsp;&nbsp;
+                    <mat-icon color="primary">thumb_down</mat-icon>&nbsp;{{review.dislikes}}&nbsp;&nbsp;
+                </mat-card-actions>
+            </mat-card>
+        </mat-card-content>
+        <mat-card-actions>
+            <mat-paginator [length]="paging.total"
+            [pageSize]="paging.limit"
+            [pageSizeOptions]="pageSizeOptions"
+            (page)="paging.limit = $event.pageSize; paging.offset = $event.pageSize * $event.pageIndex; getReviews()">
+          </mat-paginator>
+        </mat-card-actions>
+    </mat-card>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close color="primary">Fechar</button>
+</mat-dialog-actions>

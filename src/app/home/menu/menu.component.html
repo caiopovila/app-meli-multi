@@ -1,0 +1,43 @@
+<mat-toolbar>
+    <span><h1 style="color: #FFEA00;">{{title}}</h1></span>
+
+    <span class="spacer"></span>
+
+    <button mat-icon-button [matMenuTriggerFor]="notf" matTooltip="Notificações" (click)="getNotification()" aria-label="Botão notificações">
+        <mat-icon *ngIf="listNotification" color="accent">notifications_active</mat-icon> <mat-icon *ngIf="!listNotification" color="accent">notifications_none</mat-icon>
+    </button>
+    <mat-menu #notf="matMenu">
+        <section *ngIf="listNotification">
+            <section *ngFor="let message of listNotification">
+                <section *ngFor="let item of message.messages">
+                    <mat-card>
+                        <mat-card-header>
+                            <mat-card-title>{{item.topic}}</mat-card-title>
+                            <mat-card-subtitle>#{{item.user_id}}</mat-card-subtitle>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <li>enviado: {{item.sent}}</li>
+                            <li>recebido: {{item.received}}</li>
+                        </mat-card-content>
+                        <mat-card-actions align="end">
+                            <button mat-raised-button color="primary">Detalhes <mat-icon color="primary">segment</mat-icon> </button>
+                        </mat-card-actions>
+                    </mat-card>
+                </section>
+            </section>
+        </section>
+        <section class="center" *ngIf="!listNotification">
+            <h5 color="warn"><mat-icon color="warn">warning</mat-icon> Sem notificações!</h5>
+        </section>
+    </mat-menu>
+
+    <button mat-icon-button [matMenuTriggerFor]="menu" matTooltip="Menu de opções" aria-label="Menu de opções">
+        <mat-icon color="accent">menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button *ngFor="let link of links" mat-menu-item routerLink={{link.link}} (click)="title = link.name"> 
+            <mat-icon>{{ link.icon }}</mat-icon> {{link.name}}</button>
+        <button mat-menu-item (click)="exit()"><mat-icon>logout</mat-icon> Sair</button>
+    </mat-menu>
+
+</mat-toolbar>

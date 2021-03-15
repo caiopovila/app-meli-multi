@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>
+    <mat-icon color="primary">question_answer</mat-icon> 
+    Perguntas de #{{dataList.id}}</h2>
+<mat-dialog-content *ngIf="listQuestions">
+    <mat-paginator 
+        [length]="totalResults"
+        [pageSize]="params.limit"
+        [pageSizeOptions]="pageSizeOptions"
+        (page)="params.limit = $event.pageSize; params.offset = $event.pageSize * $event.pageIndex; getQuestions()">
+    </mat-paginator>
+
+    <app-question-view *ngFor="let question of listQuestions" [question]="question" [clientSelected]="dataList.client"></app-question-view>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button mat-button color="primary" mat-dialog-close>Fechar</button>
+</mat-dialog-actions>

@@ -1,0 +1,38 @@
+<section *ngIf="status">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon color="primary">rule</mat-icon>
+        Status
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item> Faturamento 
+          <mat-icon *ngIf="status.billing.allow" color="primary">check</mat-icon> 
+          <mat-icon *ngIf="!status.billing.allow" color="warn">clear</mat-icon>
+        </mat-list-item>
+        <mat-list-item> Comprar 
+          <mat-icon *ngIf="status.buy.allow" color="primary">check</mat-icon> 
+          <mat-icon *ngIf="!status.buy.allow" color="warn">clear</mat-icon> 
+        </mat-list-item>
+        <mat-list-item> Vender 
+          <mat-icon *ngIf="status.sell.allow" color="primary">check</mat-icon> 
+          <mat-icon *ngIf="!status.sell.allow" color="warn">clear</mat-icon> 
+        </mat-list-item>
+        <mat-list-item> Email confirmado 
+          <mat-icon *ngIf="status.confirmed_email" color="primary">check</mat-icon> 
+          <mat-icon *ngIf="!status.confirmed_email" color="warn">clear</mat-icon> 
+        </mat-list-item>
+        <mat-list-item> Publicar 
+          <mat-icon *ngIf="status.list.allow" color="primary">check</mat-icon> 
+          <mat-icon *ngIf="!status.list.allow" color="warn">clear</mat-icon> 
+        </mat-list-item>
+        <mat-list-item> Mercado pago 
+          <mat-icon *ngIf="status.mercadopago_tc_accepted" color="primary">check</mat-icon> 
+          <mat-icon *ngIf="!status.mercadopago_tc_accepted" color="warn">clear</mat-icon> 
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+</section>

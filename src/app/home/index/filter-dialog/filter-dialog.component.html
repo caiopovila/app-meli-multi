@@ -1,0 +1,67 @@
+<h2 mat-dialog-title>
+  <mat-icon color="primary">filter_alt</mat-icon>
+  Filtro
+</h2>
+<mat-dialog-content>
+    <section>
+      <mat-form-field>
+        <mat-label>Vendedor</mat-label>
+        <input matInput type="text" [(ngModel)]="filterDataItems.nickname" placeholder="Nickname">
+      </mat-form-field>
+    </section>
+    <section>
+        <mat-form-field>
+            <mat-label>Categorias</mat-label>
+            <mat-select [(ngModel)]="filterDataItems.category">
+              <mat-option *ngFor="let cat of categories" [value]="cat.id">
+                {{cat.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+    </section>
+
+    <section>
+        <mat-form-field>
+            <mat-label>Estado</mat-label>
+            <mat-select [(ngModel)]="filterDataItems.state">
+              <mat-option *ngFor="let state of states" [value]="state.id">
+                {{state.zone}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+    </section>
+
+    <section>
+        <label id="radio-group-label">Ordenar por: </label>
+        <mat-radio-group [(ngModel)]="filterDataItems.short" class="group" aria-labelledby="radio-group-label">
+            <mat-radio-button value="price_desc">Maior preço</mat-radio-button>
+            <mat-radio-button value="price_asc">Menor preço</mat-radio-button>
+        </mat-radio-group>          
+    </section>
+    
+    <section class="group">
+        <mat-form-field>
+            <mat-label>Preço mínimo</mat-label>
+            <input matInput [(ngModel)]="price_min" type="number" min="0.00" step="0.01" class="right-align">
+            <span matPrefix>R$&nbsp;</span>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Preço máximo</mat-label>
+            <input matInput type="number" [(ngModel)]="price_max" min="0.00" step="0.01" class="right-align">
+            <span matPrefix>R$&nbsp;</span>
+        </mat-form-field>
+    </section>
+
+    <section>
+        <mat-slide-toggle [(ngModel)]="shipping_cost">Frete grátis</mat-slide-toggle>
+    </section>
+
+    <section>
+        <mat-slide-toggle [(ngModel)]="filterDataItems.power_seller">Melhores vendedores</mat-slide-toggle>
+    </section>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="dataFilter" (click)="clear()">Limpar</button>
+  <button mat-button color="primary" (click)="save()"
+  [mat-dialog-close]="filterDataItems" cdkFocusInitial>Salvar</button>
+</mat-dialog-actions>

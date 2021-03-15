@@ -1,0 +1,62 @@
+<mat-card class="center">
+    <mat-form-field class='input_search'>
+        <mat-label>Pesquisa de vendedores</mat-label>
+        <input matInput #iput type="search" (keyup.enter)="searchSeller(iput.value)" placeholder="Ex. CASADALARANJA">
+    </mat-form-field>
+    <button mat-icon-button  matTooltip="Pesquisar" aria-label="Pesquisar" (click)="searchSeller(iput.value)" color="primary">
+        <mat-icon>search</mat-icon>
+    </button>
+</mat-card>
+
+<br>
+
+<section *ngIf="sellerInfo" class="center">
+    <mat-card>
+        <mat-card-title>
+            Informações de {{sellerInfo.nickname}}
+        </mat-card-title>
+        <mat-card-subtitle>
+            <p>Status: {{sellerInfo.status.site_status}} ID: #{{sellerInfo.id}}</p>
+            <p>{{sellerInfo.seller_reputation.power_seller_status}}</p>
+            <p><a href={{sellerInfo.permalink}} target="_blank">acessar página</a></p>
+        </mat-card-subtitle>
+
+        <mat-card-content>
+            <p>{{sellerInfo.country_id}} {{sellerInfo.address.city}} {{sellerInfo.address.state}}</p>
+            <p>Registrado em: {{sellerInfo.registration_date | date}}</p>
+            <p>Pontos: {{sellerInfo.points}}</p>
+            <p>Tipo de usuário: {{sellerInfo.user_type}}</p>
+            <p>Transações; total: {{sellerInfo.seller_reputation.transactions.total}} &nbsp; canceladas: {{sellerInfo.seller_reputation.transactions.canceled}} &nbsp; completadas: {{sellerInfo.seller_reputation.transactions.completed}}</p>
+            
+            <mat-button-toggle-group [ngSwitch]="sellerInfo.seller_reputation.level_id" aria-label="reputação do vendedor">
+                <mat-button-toggle matTooltip="Reputação ótima" aria-label="Reputação ótima"  *ngSwitchCase="'5_green'" style="background-color: green;"></mat-button-toggle>
+                <mat-button-toggle matTooltip="Reputação boa" aria-label="Reputação boa"  *ngSwitchCase="'4_light_green'" style="background-color: lightgreen;"></mat-button-toggle>
+                <mat-button-toggle matTooltip="Reputação média" aria-label="Reputação média"  *ngSwitchCase="'3_yellow'" style="background-color: yellow;"></mat-button-toggle>
+                <mat-button-toggle matTooltip="Reputação ruim" aria-label="Reputação ruim"  *ngSwitchCase="'2_orange'" style="background-color: orange;"></mat-button-toggle>
+                <mat-button-toggle matTooltip="Reputação péssima" aria-label="Reputação péssima"  *ngSwitchCase="'1_red'" style="background-color: red;"></mat-button-toggle>
+                <mat-button-toggle matTooltip="Sem reputação" aria-label="Sem reputação"  *ngSwitchDefault></mat-button-toggle>
+            </mat-button-toggle-group>
+
+        </mat-card-content>
+    </mat-card>
+</section>
+
+<br>
+
+<section *ngIf='seller && seller.results.length > 0'>
+    
+    <h1 class="center">Produtos</h1>
+
+    <mat-paginator [length]="totalResults"
+      [pageSize]="params.limit"
+      [pageSizeOptions]="pageSizeOptions"
+      (page)="params.limit = $event.pageSize; params.offset = $event.pageSize * $event.pageIndex; itemsSeller(iput.value)">
+    </mat-paginator>
+  
+    <section *ngFor="let item of seller.results">
+
+        <app-item-view [item]="item"></app-item-view>
+
+    </section>
+
+</section>

@@ -1,0 +1,35 @@
+<h2 mat-dialog-title>
+    <mat-icon color="primary">details</mat-icon>
+    Detalhes
+</h2>
+<mat-dialog-content>
+    <mat-list *ngIf="product">
+        <mat-list-item>id: {{ product.id }}</mat-list-item>
+        <mat-list-item>titulo: {{ product.title }}</mat-list-item>
+        <mat-list-item *ngIf="product.subtitle">subtitulo: {{ product.subtitle }}</mat-list-item>
+        <mat-list-item>id categoria: {{ product.category_id }}</mat-list-item>
+        <mat-list-item *ngIf="product.price">preço: {{ product.price | currency: product.currency_id }}</mat-list-item>
+        <mat-list-item *ngIf="product.base_price">preço base: {{ product.base_price | currency: product.currency_id }}</mat-list-item>
+        <mat-list-item *ngIf="product.initial_quantity">quantidade inicial: {{ product.initial_quantity }}</mat-list-item>
+        <mat-list-item *ngIf="product.available_quantity">quantidade disponivel: {{ product.available_quantity }}</mat-list-item>
+        <mat-list-item *ngIf="product.sold_quantity">quantidade vendida: {{ product.sold_quantity }}</mat-list-item>
+        <mat-list-item *ngIf="product.buying_mode">modo de compra: {{ product.buying_mode }}</mat-list-item>
+        <mat-list-item >tipo de listagem: {{ product.listing_type_id }}</mat-list-item>
+        <mat-list-item >hora de início: {{ product.start_time | date }}</mat-list-item>
+        <mat-list-item *ngIf="product.stop_time">pausar: {{ product.stop_time | date }}</mat-list-item>
+        <mat-list-item *ngIf="product.condition">condição: {{ product.condition }}</mat-list-item>
+        <mat-list-item>link:&nbsp; <a color="accent" href="{{ product.permalink }}">Página do item</a></mat-list-item>
+        <mat-list-item *ngIf="product.video_id">Video: {{ product.video_id }}</mat-list-item>
+        <mat-list-item >descrições: <span *ngFor="let desc of product.descriptions">/ {{ desc.id }} /</span></mat-list-item>
+        <mat-list-item>Mercado pago: <mat-icon *ngIf="product.accepts_mercadopago">check</mat-icon>  <mat-icon *ngIf="!product.accepts_mercadopago" color="warn">clear</mat-icon> </mat-list-item>
+        <mat-list-item >Modo de envio: {{ product.shipping.mode }}</mat-list-item>
+        <mat-list-item >entrega internacional: {{ product.international_delivery_mode }}</mat-list-item>
+        <mat-list-item *ngIf="product.seller_address">endereço vendedor: {{ product.seller_address.address_line }} {{ product.seller_address.zip_code }} {{ product.seller_address.city.name }} {{ product.seller_address.state.name }}</mat-list-item>
+        <mat-list-item *ngIf="product.seller_contact">contato vendedor: {{ product.seller_contact.country_code }} {{ product.seller_contact.area_code }} {{product.seller_contact.phone}} {{ product.seller_contact.email }}</mat-list-item>
+    </mat-list>
+</mat-dialog-content>
+<mat-dialog-actions *ngIf="product">
+    <button mat-button mat-dialog-close color="warn">Fechar</button>
+    <button *ngIf="product.variations && product.variations.length > 0" mat-button color="primary" (click)="openVariations()">Variações</button>
+    <button *ngIf="product.attributes && product.attributes.length > 0" mat-button color="primary" (click)="openAttributes()">Atributos</button>
+</mat-dialog-actions>

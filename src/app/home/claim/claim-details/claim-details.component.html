@@ -1,0 +1,19 @@
+<h2 mat-dialog-title>
+    <mat-icon color="primary">feedback</mat-icon>
+    Detalhes da reclamação
+</h2>
+<mat-dialog-content>
+    <mat-list>
+        <mat-list-item>{{details.id | reasonClaim}}</mat-list-item>
+        <mat-list-item>{{details.name}}</mat-list-item>
+        <mat-list-item>{{details.detail}}</mat-list-item>
+        <mat-list-item>{{details.flow}}</mat-list-item>
+        <mat-list-item>{{details.status}}</mat-list-item>
+        <mat-list-item>Criado: {{details.date_created}}</mat-list-item>
+        <mat-list-item>Atualizado: {{details.last_updated}}</mat-list-item>
+        <mat-list-item>O que se espera: {{details.expected_resolutions | expectedResolutionClaimDetail}}</mat-list-item>
+    </mat-list>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close cdkFocusInitial color="warn">fechar</button>
+</mat-dialog-actions>

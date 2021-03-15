@@ -1,0 +1,33 @@
+<mat-card class="center">
+    <mat-card-title> 
+        <mat-icon color="primary">question_answer</mat-icon> 
+        Obter Perguntas de: 
+    </mat-card-title>
+    <mat-form-field>
+        <mat-label>Cliente</mat-label>
+        <mat-select [(value)]="clientSelected" (selectionChange)="getQuestions()" required>
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let client of listClients" [value]="client.user_id">
+                {{client.nickname}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <button mat-icon-button  matTooltip="Adicionar filtro" aria-label="Adicionar filtro" (click)="openFilterDialog()" color="primary">
+        <mat-icon>filter_alt</mat-icon>
+    </button>
+    <button mat-icon-button  matTooltip="configurações" aria-label="Configurar perguntas" (click)="openSettingDialog()" color="primary">
+        <mat-icon>settings</mat-icon>
+    </button>
+</mat-card>
+
+<section *ngIf="listQuestions">
+    <mat-paginator 
+        [length]="totalResults"
+        [pageSize]="params.limit"
+        [pageSizeOptions]="pageSizeOptions"
+        (page)="params.limit = $event.pageSize; params.offset = $event.pageSize * $event.pageIndex; getQuestions()">
+    </mat-paginator>
+
+    <app-question-view *ngFor="let question of listQuestions" [question]="question" [clientSelected]="clientSelected"></app-question-view>
+
+</section>

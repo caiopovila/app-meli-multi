@@ -1,0 +1,45 @@
+<div class="centerA">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                <mat-icon color="primary">how_to_reg</mat-icon>
+                Cadastro
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form #form_cad="ngForm" (ngSubmit)="register(form_cad)" novalidate>
+                <p>
+                    <mat-form-field>
+                        <mat-icon color="primary" matSuffix>person</mat-icon>
+                        <mat-label for="user">Nome</mat-label>
+                        <input matInput type="text" id="user" name="user" required ngModel>
+                    </mat-form-field>
+                </p>
+                <p>
+                    <mat-form-field>
+                        <mat-icon color="primary" matSuffix>email</mat-icon>
+                        <mat-label for="email">Email</mat-label>
+                        <input matInput type="email" id="email" name="email" required ngModel>
+                    </mat-form-field>
+                </p>
+                <p>
+                    <mat-form-field>
+                        <mat-icon color="primary" matSuffix>password</mat-icon>
+                        <mat-label for="password">Senha</mat-label>
+                        <input matInput type="password" id="password" name="password" minlength="4" required ngModel>
+                    </mat-form-field>
+                </p>
+                <p>
+                    <mat-form-field>
+                        <mat-icon color="primary" matSuffix>password</mat-icon>
+                        <mat-label for="i_passc">Confirmar senha</mat-label>
+                        <input matInput type="password" id="i_passc" name="password_conf" required ngModel>
+                    </mat-form-field>
+                </p>
+                        
+                <button mat-button color="primary">Cadastrar <mat-icon color="primary">assignment</mat-icon></button>
+
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

@@ -1,0 +1,30 @@
+<section *ngIf="loading" class="loader">
+    <mat-spinner color="accent"></mat-spinner>
+</section>
+<div class="centerA">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Meli Multi</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form #form_login="ngForm" (ngSubmit)="logger(form_login)" novalidate>
+                <p>
+                    <mat-form-field>
+                        <mat-icon color="primary" matSuffix>person</mat-icon>
+                        <mat-label for="i_name">Nome</mat-label>
+                        <input matInput type="text" id="i_name" name="name" required ngModel>
+                    </mat-form-field>
+                </p>
+                <p>
+                    <mat-form-field>
+                        <mat-icon color="primary" matSuffix>password</mat-icon>
+                        <mat-label for="i_pass">Senha</mat-label>
+                        <input matInput type="password" id="i_pass" name="pass" required ngModel>
+                    </mat-form-field>
+                </p>
+                        
+                <button mat-button color="primary">Entrar <mat-icon color="primary">login</mat-icon></button>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

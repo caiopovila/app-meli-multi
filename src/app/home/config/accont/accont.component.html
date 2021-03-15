@@ -1,0 +1,11 @@
+<section *ngIf="listSite" class="center">
+    <h2> <mat-icon color="primary">public</mat-icon> Selecione o país</h2>
+    <mat-form-field>
+      <mat-label>País</mat-label>
+      <mat-select [(value)]="siteId" (selectionChange)="setSiteId()" required>
+        <mat-option *ngFor="let site of listSite" [value]="site.id">
+          {{site.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+</section>

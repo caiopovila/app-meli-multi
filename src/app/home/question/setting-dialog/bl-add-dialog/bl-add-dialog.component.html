@@ -1,0 +1,15 @@
+<mat-form-field>
+    <mat-label>Id do usuário</mat-label>
+    <input type="text" matInput #ipt >
+</mat-form-field>
+<br>
+<mat-form-field>
+    <mat-label>Cliente</mat-label>
+    <mat-select [(value)]="clientsSelected" multiple required>
+        <mat-option *ngFor="let client of listClients" [value]="client.user_id">
+            {{client.nickname}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
+<br>
+<button mat-button *ngIf="ipt.value && clientsSelected" (click)="addBl(ipt.value)"> <mat-icon color="primary">add</mat-icon> Add</button>

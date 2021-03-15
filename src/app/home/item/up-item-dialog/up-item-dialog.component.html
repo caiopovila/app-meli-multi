@@ -1,0 +1,64 @@
+<h2 mat-dialog-title>
+    <mat-icon color="primary">shopping_cart</mat-icon>
+    Atualizar produto
+</h2>
+<mat-dialog-content *ngIf="item">
+
+    <section>
+        <mat-form-field>
+            <mat-label>Titulo</mat-label>
+            <input matInput [(ngModel)]="item.title" type="text" required>
+        </mat-form-field>
+    </section>
+
+    <section>
+        <mat-form-field>
+            <mat-label>Moeda</mat-label>
+            <mat-select [(ngModel)]="item.currency_id" required>
+            <mat-option *ngFor="let currency of currencies" [value]="currency.id">
+                {{currency.description}} {{currency.symbol}}
+            </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </section>
+
+    <section>
+        <mat-form-field>
+            <mat-label>Preço</mat-label>
+            <input matInput [(ngModel)]="item.price" step="0.01" min="0.00" type="number" required>
+            <span matPrefix>$&nbsp;</span>
+        </mat-form-field>
+    </section>
+
+    <section>
+        <mat-form-field>
+            <mat-label>Quantidade</mat-label>
+            <input matInput [(ngModel)]="item.available_quantity" min="0" type="number" required>
+        </mat-form-field>
+    </section>
+
+    <section>
+        <mat-form-field>
+            <mat-label>Descrição</mat-label>
+            <textarea matInput [(ngModel)]="item.description"></textarea>
+        </mat-form-field>
+    </section>
+    
+    <section>
+        <label id="radio-group-label">Condição do produto:</label>
+        <mat-radio-group [(ngModel)]="item.condition" class="group" aria-labelledby="radio-group-label">&nbsp;
+            <mat-radio-button value="new">Novo</mat-radio-button>&nbsp;
+            <mat-radio-button value="used">Usado</mat-radio-button>
+        </mat-radio-group>  
+    </section>
+<br>
+<!--     <section>
+        <label for="pic">Imagens</label>
+        <input type="file" id="pic" [(ngModel)]="item.pictures" multiple>
+    </section> -->
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-button color="primary" (click)="save()" cdkFocusInitial>Atualizar</button>
+</mat-dialog-actions>

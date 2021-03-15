@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>
+    <mat-icon color="primary">thumb_up_off_alt</mat-icon>
+    Confirmação
+  </h2>
+<mat-dialog-content>
+    Deseja continuar?
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button color="warn" mat-dialog-close cdkFocusInitial>Não</button>
+    <button mat-button color="primary"
+    [mat-dialog-close]="confirmData">Sim</button>
+</mat-dialog-actions>

@@ -1,0 +1,24 @@
+<h2 mat-dialog-title>
+    <mat-icon color="primary">library_add_check</mat-icon>
+    Variações
+</h2>
+<mat-dialog-content *ngIf="item">
+    <mat-card *ngFor="let variation of item.variations">
+        <mat-card-header>
+            <mat-card-title>
+                {{variation.price | currency: item.currency_id}}
+            </mat-card-title>
+            <mat-card-subtitle>
+                disponível: {{variation.available_quantity}}, vendidos: {{variation.sold_quantity}}
+            </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-list *ngIf="variation.attribute_combinations && variation.attribute_combinations.length > 0">
+                <mat-list-item *ngFor="let combination of variation.attribute_combinations">{{combination.name}} {{combination.value_name}}</mat-list-item>
+            </mat-list>
+        </mat-card-content>
+    </mat-card>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close color="warn">Fechar</button>
+</mat-dialog-actions>

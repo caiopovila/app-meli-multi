@@ -1,0 +1,39 @@
+<h2 mat-dialog-title>
+    <mat-icon color="primary">feedback</mat-icon>
+    Mensagens da Reclamação #{{claim.claim.id}}
+</h2>
+<mat-dialog-content>
+    <section *ngIf="messages">
+        <mat-card *ngFor="let msg of messages">
+            <mat-card-header>
+                <mat-card-title>
+                    {{msg.sender_role}} para {{msg.receiver_role}}
+                </mat-card-title>
+                <mat-card-subtitle>
+                    {{msg.date_created | date}}
+                </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                {{msg.message}}
+            </mat-card-content>
+            <mat-card-actions *ngIf="msg.attachments && msg.attachments.length > 0" align="end">
+                <button mat-button *ngFor="let att of msg.attachments">
+                    <mat-icon color="primary" matTooltip="att.original_filename" (click)="dowloadAtt(att.filename)" aria-label="arquivo att.original_filename">
+                        attach_file
+                    </mat-icon>
+                </button>
+            </mat-card-actions>
+        </mat-card>
+    </section>
+    <mat-card>
+        <mat-card-content>
+            <textarea [(ngModel)]="message" cols="30" rows="10"></textarea>
+        </mat-card-content>
+        <mat-card-actions align="end">
+            <button mat-button color="primary" color="primary" (click)="postMessage()">Enviar<mat-icon>send</mat-icon></button>
+        </mat-card-actions>
+    </mat-card>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close cdkFocusInitial color="warn">fechar</button>
+</mat-dialog-actions>

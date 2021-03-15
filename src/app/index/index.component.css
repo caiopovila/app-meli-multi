@@ -1,0 +1,8 @@
+mat-tab-group, mat-tab {
+    height: 100vh;
+    z-index: 1;
+}
+
+mat-drawer-container {
+    height: 100vh;
+}

@@ -1,0 +1,9 @@
+<section *ngIf="notices">
+    <mat-card *ngFor="let notice of notices">
+        <mat-card-title> <mat-icon color="primary">event_note</mat-icon> {{notice.label}}</mat-card-title>
+        <mat-card-subtitle>{{notice.description}}</mat-card-subtitle>
+        <mat-card-actions>
+        <a href={{notice.actions.link}} target="_blank">{{notice.actions.text}}</a>
+        </mat-card-actions>
+    </mat-card>
+</section>

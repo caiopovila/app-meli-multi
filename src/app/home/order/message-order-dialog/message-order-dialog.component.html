@@ -1,0 +1,46 @@
+<h1 mat-dialog-title>
+    <mat-icon color="primary">chat</mat-icon>
+    Mensagens
+</h1>
+<mat-dialog-content *ngIf="msg.messages">
+    <mat-card *ngFor="let message of msg.messages">
+        <mat-card-header>
+            <mat-card-title>{{message.from.name}}</mat-card-title>
+            <mat-card-subtitle>{{message.message_date.created}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            {{message.text}}
+        </mat-card-content>
+        <mat-card-actions>
+            <a mat-button color="primary" *ngIf="message.message_attachments" (click)="getAttachments(message)">
+                <mat-icon color="primary">attachment</mat-icon>
+                {{message.message_attachments.original_filename}}
+            </a>
+        </mat-card-actions>
+    </mat-card>
+</mat-dialog-content>
+<mat-divider></mat-divider>
+    <mat-paginator 
+        [length]="totalResults"
+        [pageSize]="params.limit"
+        [pageSizeOptions]="pageSizeOptions"
+        (page)="params.limit = $event.pageSize; params.offset = $event.pageSize * $event.pageIndex; getMsg()">
+    </mat-paginator>
+<mat-divider></mat-divider>
+<form>
+    <mat-form-field>
+        <mat-label>Escreva</mat-label>
+        <textarea matInput [(ngModel)]="text" cols="30" rows="10" maxlength="350"></textarea>
+    </mat-form-field>
+<!--
+    <section>
+        <label for="anexo">Anexo (max 25MB): </label>
+        <input type="file" name="anexo" id="anexo">
+    </section>
+-->
+    <button mat-button color="primary" (click)="postMessage(msg.conversation_status.path)">Enviar</button>
+</form>
+
+<mat-dialog-actions>
+    <button mat-button color="primary" mat-dialog-close>Fechar</button>
+</mat-dialog-actions>

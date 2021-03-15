@@ -1,0 +1,15 @@
+<mat-form-field>
+    <mat-label>Cliente</mat-label>
+    <mat-select [(value)]="clientSelected" (selectionChange)="getBl()" required>
+        <mat-option>--</mat-option>
+        <mat-option *ngFor="let client of listClients" [value]="client.user_id">
+            {{client.nickname}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
+
+<section *ngIf="list">
+    <mat-list role="list">
+        <mat-list-item *ngFor="let user of list">id: {{user.id}} <a mat-icon-button color="warn" matTooltip="Remover usuário da blacklist" aria-label="Remover usuário da blacklist" (click)="delBl(user.id)"><mat-icon>delete</mat-icon></a></mat-list-item>
+    </mat-list>
+</section>

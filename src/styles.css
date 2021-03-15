@@ -1,1 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: "Grotesk regular";
+    src: url("assets/hk-grotesk/HKGrotesk-Regular.otf");
+}
+
+html, body { 
+    height: 100%;
+}
+body { margin: 0; font-family: "Grotesk regular" }
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.input_search {
+    padding: 20px;
+    width: 50%;
+}
+
+.center {
+    text-align: center;
+    margin: 8px;
+}
+
+.margin {
+    margin-left: 10%;
+}
+
+.img-card {
+    float: left;
+    margin-right: 10%;
+}

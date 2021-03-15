@@ -1,0 +1,84 @@
+<h2 mat-dialog-title>
+    <mat-icon color="primary">copy_all</mat-icon>
+    Clonar produto
+</h2>
+<mat-dialog-content *ngIf="item">
+    <section>
+        <mat-form-field>
+            <mat-label>Cliente</mat-label>
+            <mat-select [(ngModel)]="clients" multiple required>
+            <mat-option *ngFor="let client of clientsList" [value]="client.user_id">
+                {{client.nickname}}
+            </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </section>
+
+    <section>
+        <mat-form-field>
+            <mat-label>Titulo</mat-label>
+            <input matInput [(ngModel)]="item.title" type="text" required>
+        </mat-form-field>
+    </section>
+
+    <section>
+        <mat-form-field>
+            <mat-label>Moeda</mat-label>
+            <mat-select [(ngModel)]="item.currency_id" required>
+            <mat-option *ngFor="let currency of currencies" [value]="currency.id">
+                {{currency.description}} {{currency.symbol}}
+            </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </section>
+
+    <section>
+        <mat-form-field>
+            <mat-label>Preço</mat-label>
+            <input matInput [(ngModel)]="item.price" step="0.01" min="0.00" type="number" required>
+            <span matPrefix>$&nbsp;</span>
+        </mat-form-field>
+    </section>
+
+    <section>
+        <mat-form-field>
+            <mat-label>Tipo de listagem</mat-label>
+            <mat-select [(ngModel)]="item.listing_type_id" required>
+            <mat-option *ngFor="let lp of listingTypes" [value]="lp.id">
+                {{lp.name}}
+            </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </section>
+
+    <section>
+        <mat-form-field>
+            <mat-label>Quantidade</mat-label>
+            <input matInput [(ngModel)]="item.available_quantity" min="0" type="number" required>
+        </mat-form-field>
+    </section>
+
+    <section>
+        <mat-form-field>
+            <mat-label>Descrição</mat-label>
+            <textarea matInput [(ngModel)]="item.description"></textarea>
+        </mat-form-field>
+    </section>
+    
+    <section>
+        <label id="radio-group-label">Condição do produto:</label>
+        <mat-radio-group [(ngModel)]="item.condition" class="group" aria-labelledby="radio-group-label">&nbsp;
+            <mat-radio-button value="new">Novo</mat-radio-button>&nbsp;
+            <mat-radio-button value="used">Usado</mat-radio-button>
+        </mat-radio-group>  
+    </section>
+<!--     <section>
+        <label for="pic">Imagens</label>
+        <input type="file" id="pic" [(ngModel)]="item.pictures" multiple>
+    </section> -->
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-button color="primary" (click)="save()" cdkFocusInitial>Clonar</button>
+</mat-dialog-actions>

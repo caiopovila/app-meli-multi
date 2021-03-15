@@ -1,0 +1,80 @@
+<mat-expansion-panel>
+
+    <mat-expansion-panel-header>
+
+      <mat-panel-title>
+        <mat-icon color="primary">account_circle</mat-icon> &nbsp;
+        Usuário
+      </mat-panel-title>
+
+      <mat-panel-description>
+        Alterar dados cadastrais
+      </mat-panel-description>
+
+    </mat-expansion-panel-header>
+
+    <app-form-user *ngIf="user" [user]="user" [passConf]="passConf"></app-form-user>
+
+    <mat-action-row>
+      <button mat-button color="primary" (click)="saveData()">Salvar</button>
+    </mat-action-row>
+
+</mat-expansion-panel>
+
+<mat-expansion-panel>
+
+  <mat-expansion-panel-header>
+
+    <mat-panel-title>
+      <mat-icon color="accent">account_circle</mat-icon> &nbsp;
+      Cliente
+    </mat-panel-title>
+
+    <mat-panel-description>
+      Dados do Mercado livre
+    </mat-panel-description>
+
+  </mat-expansion-panel-header>
+
+  <section *ngIf="clientList" class="center">
+    <h2> <mat-icon color="accent">folder_shared</mat-icon> Obter dados de</h2>
+    <mat-form-field>
+      <mat-label>Cliente</mat-label>
+      <mat-select [(value)]="clientSelected" (selectionChange)="getDataClient()" required>
+        <mat-option>--</mat-option>
+        <mat-option *ngFor="let client of clientList" [value]="client.user_id">
+          {{client.nickname}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </section>
+
+    <app-form-client *ngIf="clientData && clientSelected" [clientData]="clientData"></app-form-client>
+
+  <mat-action-row>
+    <button mat-button color="primary" *ngIf="clientData" (click)="saveDataClient()">Salvar</button>
+  </mat-action-row>
+</mat-expansion-panel>
+
+<mat-expansion-panel>
+
+  <mat-expansion-panel-header>
+
+    <mat-panel-title>
+      <mat-icon color="primary">manage_accounts</mat-icon> &nbsp;
+      Conta
+    </mat-panel-title>
+
+    <mat-panel-description>
+      Dados da conta
+    </mat-panel-description>
+
+  </mat-expansion-panel-header>
+
+  <app-accont></app-accont>
+
+  <mat-action-row>
+    <button mat-button (click)="goLink()" color="primary"> <mat-icon color="primary">add</mat-icon> Adicionar cliente</button>
+  <!--   <button mat-button disabled color="primary" (click)="saveDataClient()">Salvar</button> -->
+  </mat-action-row>
+</mat-expansion-panel>

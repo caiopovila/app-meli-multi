@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>
+    <mat-icon color="primary">question_answer</mat-icon>
+    Resposta
+  </h2>
+<mat-dialog-content>
+    <textarea [(ngModel)]="textData" id="" cols="30" rows="10"></textarea>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button color="warn" cdkFocusInitial>Cancelar</button>
+    <button mat-button color="primary"
+    [mat-dialog-close]="textData">Responder</button>
+</mat-dialog-actions>

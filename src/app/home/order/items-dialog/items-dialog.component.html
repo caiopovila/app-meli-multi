@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>
+    <mat-icon color="primary">production_quantity_limits</mat-icon>
+    Itens
+</h2>
+<mat-dialog-content>
+    <mat-card *ngFor="let item of order.order_items">
+        <mat-card-header>
+            <mat-card-title>{{item.item.title}}</mat-card-title>
+            <mat-card-subtitle>#{{item.item.id}}</mat-card-subtitle>
+        </mat-card-header>
+        <p>qantidade: {{item.quantity}}</p>
+        <p>preço unitário: {{item.unit_price}}</p>
+    </mat-card>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close>Fechar</button>
+</mat-dialog-actions>

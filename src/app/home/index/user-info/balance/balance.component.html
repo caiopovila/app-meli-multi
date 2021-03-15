@@ -1,0 +1,36 @@
+<mat-card class="balance" *ngIf="balance">
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon color="primary">monetization_on</mat-icon>
+        Saldo total: {{balance.total_amount | currency: balance.currency_id || 'BRL'}}
+      </mat-card-title>
+      <mat-card-subtitle>Saldo disponível: {{balance.available_balance | currency: balance.currency_id || 'BRL'}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions>
+      <mat-list>
+        <mat-list-item *ngFor="let type of balance.available_balance_by_transaction_type">
+          {{type.transaction_type}} {{type.amount | currency: balance.currency_id || 'BRL'}}
+        </mat-list-item>
+      </mat-list>
+    </mat-card-actions>
+</mat-card>
+
+<mat-card>
+    <mat-card-header>
+      <mat-card-title> 
+        <mat-icon color="primary">today</mat-icon> 
+        Balanço mensal
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-list>
+            <mat-list-item *ngIf="questions">
+                Perguntas recebidas no mês: {{questions.total || '0'}}
+            </mat-list-item>
+
+            <mat-list-item *ngIf="visits">
+                Visitas no mês: {{visits.visits_detail.quantity || '0'}}
+            </mat-list-item>
+        </mat-list>
+    </mat-card-content>
+</mat-card>

@@ -1,0 +1,67 @@
+<h2 mat-dialog-title>
+    <mat-icon color="primary">filter_alt</mat-icon>
+    Filtro
+</h2>
+<mat-dialog-content>
+
+      <section>
+          <mat-form-field>
+              <mat-label>{{status.name}}</mat-label>
+              <mat-select [(ngModel)]="filterDataItems.status">
+                <mat-option *ngFor="let stat of status.values" [value]="stat.id">
+                  {{stat.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+      </section>
+  
+      <section>
+          <mat-form-field>
+              <mat-label>{{subStatus.name}}</mat-label>
+              <mat-select [(ngModel)]="filterDataItems.sub_status">
+                <mat-option *ngFor="let subStat of subStatus.values" [value]="subStat.id">
+                  {{subStat.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+      </section>
+  
+      <section>
+          <mat-form-field>
+              <mat-label>{{buyingMode.name}}</mat-label>
+              <mat-select [(ngModel)]="filterDataItems.buying_mode">
+                <mat-option *ngFor="let buyingM of buyingMode.values" [value]="buyingM.id">
+                  {{buyingM.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+      </section>
+  
+      <section>
+          <mat-form-field>
+              <mat-label>{{listingTypeId.name}}</mat-label>
+              <mat-select [(ngModel)]="filterDataItems.listing_type_id">
+                <mat-option *ngFor="let lti of listingTypeId.values" [value]="lti.id">
+                  {{lti.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+      </section>
+  
+      <section>
+          <mat-form-field>
+              <mat-label>Ordenar</mat-label>
+              <mat-select [(ngModel)]="filterDataItems.orders">
+                <mat-option *ngFor="let ao of availableOrders" [value]="ao.id">
+                  {{ao.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+      </section>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="dataFilter" (click)="clear()">Limpar</button>
+    <button mat-button color="primary"
+    [mat-dialog-close]="filterDataItems" cdkFocusInitial>Salvar</button>
+</mat-dialog-actions>
