@@ -10,7 +10,7 @@ import { QuestionControlService } from '../question-control.service';
   styleUrls: ['./dynamic-form.component.css']
 })
 export class DynamicFormComponent implements OnInit {
-  @Input() questions!: QuestionBase<string | number>[];
+  @Input() questions: QuestionBase<string | number>[] | null = [];
   form!: FormGroup;
 
   constructor(private qcs: QuestionControlService) {  }

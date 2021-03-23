@@ -4,7 +4,7 @@
 
       <div [ngSwitch]="question.controlType">
 
-        <input matInput *ngSwitchCase="'textbox'" [formControlName]="question.key"
+        <input matInput *ngSwitchCase="'textbox'" [step]="question.step" [min]="question.min" [formControlName]="question.key"
                 [id]="question.key" [type]="question.type" [required]="question.required">
 
         <mat-select [id]="question.key" *ngSwitchCase="'dropdown'" [multiple]="question.multiple" [required]="question.required" [formControlName]="question.key">

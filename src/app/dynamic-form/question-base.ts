@@ -4,6 +4,8 @@ export class QuestionBase<T> {
     label: string;
     required: boolean;
     order: number;
+    step?: number;
+    min?: number;
     controlType: string;
     type: string;
     multiple: boolean;
@@ -18,6 +20,8 @@ export class QuestionBase<T> {
         multiple?: boolean;
         controlType?: string;
         type?: string;
+        step?: number;
+        min?: number;
         options?: {key: string, value: string}[];
       } = {}) {
       this.value = options.value;
@@ -28,6 +32,8 @@ export class QuestionBase<T> {
       this.controlType = options.controlType || '';
       this.type = options.type || '';
       this.options = options.options || [];
-      this.multiple = !!options.multiple
+      this.multiple = !!options.multiple;
+      this.step = options.key == 'price' ? 0.01 : options.key == 'available_quantity' ? 0 : undefined;
+      this.min = options.key == 'price' ? 0.00 : options.key == 'available_quantity' ? 0 : undefined;
     }
 }

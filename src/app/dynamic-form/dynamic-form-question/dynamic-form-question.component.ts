@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input } from '@angular/core';
+import { AfterViewInit, Component, Input, OnChanges } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Client } from 'src/app/interfaces/interface_client';
@@ -13,16 +13,21 @@ import { QuestionBase } from '../question-base';
   templateUrl: './dynamic-form-question.component.html',
   styleUrls: ['./dynamic-form-question.component.css']
 })
-export class DynamicFormQuestionComponent implements AfterViewInit {
+export class DynamicFormQuestionComponent implements AfterViewInit, OnChanges {
   @Input() question!: QuestionBase<string | number>;
   @Input() form!: FormGroup;
 
   options!: Observable<{key: string, value: string}[]>;
+  isValid!: boolean;
 
   constructor (
     private client: ClientsService,
     private listingType: ItemsService
   ) { }
+
+  ngOnChanges(): void {
+      this.isValid = this.validation;
+  }
 
   ngAfterViewInit(): void {
     setTimeout(() => {
@@ -30,7 +35,7 @@ export class DynamicFormQuestionComponent implements AfterViewInit {
     }, 0);
    }
 
-  get isValid() { return this.form.controls[this.question.key].valid; }
+  get validation() { return this.form.controls[this.question.key].valid }
 
   getOtions(key: string): void {
     let ret: {key: string, value: string}[] = [];

@@ -9,12 +9,9 @@ import { TextboxQuestion } from '../textbox-question';
 })
 export class NewItemQuestionService {
 
-    questions: QuestionBase<string | number>[] = [];
+ //   questions: QuestionBase<string | number>[] = [];
 
-  constructor(
-  ) {
-    this.getQuestionsInfo();
-  }
+  constructor() { }
 
   getQuestionsInfo() {
 
@@ -73,10 +70,7 @@ export class NewItemQuestionService {
       quantity
     ];
 
-
-    of(ret.sort((a, b) => a.order - b.order)).subscribe(returnOrder => {
-      this.questions = returnOrder;
-    });
+    return of(ret.sort((a, b) => a.order - b.order));
 
   }
 }
