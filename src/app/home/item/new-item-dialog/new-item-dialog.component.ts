@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { NewItemQuestionService } from 'src/app/dinamic-form/new-item-question.service';
-import { QuestionBase } from 'src/app/dinamic-form/question-base';
+import { NewItemQuestionService } from 'src/app/dynamic-form/questions/new-item-question.service';
+import { QuestionBase } from 'src/app/dynamic-form/question-base';
 
 
 @Component({
@@ -11,14 +10,13 @@ import { QuestionBase } from 'src/app/dinamic-form/question-base';
 })
 export class NewItemDialogComponent implements OnInit {
 
-  questions$: Observable<QuestionBase<any>[] | any>;
-  
+  questions$!: QuestionBase<string | number>[];
+
   constructor(
     private service: NewItemQuestionService
-  ) { 
-    this.questions$ = this.service.getQuestions();
-  }
+  ) { }
 
   ngOnInit(): void {
+    this.questions$ = this.service.questions;
   }
 }

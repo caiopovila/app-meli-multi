@@ -111,10 +111,10 @@ export class ItemsService extends ApiConfigService {
           });
   }
 
-  postImg(itemBody: FormData): Observable<Object> {
-    return this.http.post(`${this.getUrlApi()}/items/img`, itemBody, {
+  postImg(file: File): Observable<Object> {
+    return this.http.post(`${this.getUrlApi()}/items/img`, file, {
             headers: new HttpHeaders({
-              'Content-Type':  'multipart/form-data',
+              'Content-Type':  file.type,
               'Authorization': 'Basic ' + this.getIdSession()
             }),
             withCredentials: true,

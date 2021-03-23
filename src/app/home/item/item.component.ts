@@ -82,7 +82,7 @@ export class ItemComponent implements OnInit {
         this.params = result;
         this.getProducts();
       });
-  } 
+  }
 
   deleteItem(itemId: string): void {
     this.dialog.open(ConfirmDialogComponent,
@@ -97,7 +97,7 @@ export class ItemComponent implements OnInit {
               this.getProducts();
           });
       });
-  } 
+  }
 
   openNewItemDialog(): void {
     this.dialog.open(NewItemDialogComponent,

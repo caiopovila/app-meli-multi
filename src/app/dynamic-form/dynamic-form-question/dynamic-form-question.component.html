@@ -1,0 +1,23 @@
+<div>
+  <mat-form-field [formGroup]="form">
+      <mat-label [attr.for]="question.key">{{question.label}}</mat-label>
+
+      <div [ngSwitch]="question.controlType">
+
+        <input matInput *ngSwitchCase="'textbox'" [formControlName]="question.key"
+                [id]="question.key" [type]="question.type" [required]="question.required">
+
+        <mat-select [id]="question.key" *ngSwitchCase="'dropdown'" [multiple]="question.multiple" [required]="question.required" [formControlName]="question.key">
+          <div *ngIf="options">
+            <mat-option *ngFor="let opt of options | async" [value]="opt.key">{{opt.value}}</mat-option>
+          </div>
+          <div *ngIf="question.options">
+            <mat-option *ngFor="let opt of question.options" [value]="opt.key">{{opt.value}}</mat-option>
+          </div>
+        </mat-select>
+
+      </div>
+
+      <mat-error class="errorMessage" *ngIf="!isValid">{{question.label}} está inválido(a)</mat-error>
+  </mat-form-field>
+</div>

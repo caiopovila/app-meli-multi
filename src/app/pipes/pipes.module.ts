@@ -7,7 +7,6 @@ import { PlayerActionClaimPipe } from '../pipes/player-action-claim.pipe';
 import { ExpectedResolutionClaimPipe } from '../pipes/expected-resolution-claim.pipe';
 import { ExpectedResolutionClaimDetailPipe } from '../pipes/expected-resolution-claim-detail.pipe';
 import { ShippingModePipe } from './shipping-mode.pipe';
-import { QuestionKeyVerifyPipe } from './question-key-verify.pipe';
 
 
 @NgModule({
@@ -17,8 +16,7 @@ import { QuestionKeyVerifyPipe } from './question-key-verify.pipe';
     ExpectedResolutionClaimPipe,
     ReasonClaimPipe,
     PlayerActionClaimPipe,
-    ShippingModePipe,
-    QuestionKeyVerifyPipe
+    ShippingModePipe
   ],
   imports: [
     CommonModule
@@ -29,8 +27,7 @@ import { QuestionKeyVerifyPipe } from './question-key-verify.pipe';
     ExpectedResolutionClaimPipe,
     ReasonClaimPipe,
     PlayerActionClaimPipe,
-    ShippingModePipe,
-    QuestionKeyVerifyPipe
+    ShippingModePipe
   ]
 })
 export class PipesModule { }

@@ -35,7 +35,7 @@
         <mat-icon color="accent">menu</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-        <button *ngFor="let link of links" mat-menu-item routerLink={{link.link}} (click)="title = link.name"> 
+        <button *ngFor="let link of links" mat-menu-item routerLink={{link.link}} routerLinkActive="active" (click)="title = link.name"> 
             <mat-icon>{{ link.icon }}</mat-icon> {{link.name}}</button>
         <button mat-menu-item (click)="exit()"><mat-icon>logout</mat-icon> Sair</button>
     </mat-menu>

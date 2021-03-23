@@ -1,0 +1,46 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="form">
+  <mat-vertical-stepper linear="true" #stepper>
+      <mat-step [stepControl]="form">
+          <ng-template matStepLabel>Informações</ng-template>
+          <div *ngFor="let question of questions">
+
+              <app-dynamic-form-question [question]="question" [form]="form"></app-dynamic-form-question>
+
+          </div>
+          <br>
+          <br>
+
+          <div>
+              <button mat-button matStepperPrevious type="button">Voltar</button>
+              <button mat-button matStepperNext type="button">Próximo</button>
+          </div>
+      </mat-step>
+<!--
+      <mat-step *ngIf="attributes">
+          <ng-template matStepLabel>Alguns ajustes</ng-template>
+
+          <br>
+          <br>
+
+          <div>
+              <button mat-button matStepperPrevious type="button">Voltar</button>
+              <button mat-button matStepperNext type="button">Próximo</button>
+          </div>
+      </mat-step>
+-->
+      <mat-step>
+          <ng-template matStepLabel>Finalizando...</ng-template>
+
+          <mat-icon color="primary">thumb_up</mat-icon>  Deseja continuar?
+
+          <br>
+          <br>
+
+          <div>
+              <button mat-button matStepperPrevious type="button">Voltar</button>
+              <button mat-button type="button" color="warn" (click)="stepper.reset()">Limpar</button>
+              <button mat-button type="submit" color="primary">Salvar</button>
+          </div>
+      </mat-step>
+  </mat-vertical-stepper>
+</form>
