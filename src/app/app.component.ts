@@ -13,7 +13,12 @@ export class AppComponent {
 
   constructor(private loaderService: LoaderService) {
     this.loaderService.isLoading.subscribe((v) => {
-      this.loading = v;
+      if (this.loading)
+        setTimeout(() => {
+          this.loading = v;
+        }, 1000)
+      else
+        this.loading = v;
     });
    }
 }
