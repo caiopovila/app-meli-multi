@@ -4,7 +4,7 @@
 </h2>
 
 <mat-dialog-content *ngIf="questions$">
-  <app-dynamic-form [questions]="questions$ | async"></app-dynamic-form>
+  <app-dynamic-form [steppers]="service.steppers" [questions]="questions$ | async"></app-dynamic-form>
 </mat-dialog-content>
 
 <mat-dialog-actions>

@@ -13,9 +13,9 @@ export class NewItemDialogComponent implements OnInit {
   questions$: Observable<QuestionBase<string | number>[]>;
 
   constructor(
-    private service: NewItemQuestionService
+    public service: NewItemQuestionService
   ) {
-    this.questions$ = this.service.getQuestionsInfo();
+    this.questions$ = this.service.getQuestions();
   }
 
   ngOnInit(): void { }
