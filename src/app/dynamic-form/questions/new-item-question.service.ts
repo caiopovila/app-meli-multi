@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { DropdownQuestion } from '../dropdown-question';
-import { QuestionBase } from '../question-base';
 import { TextboxQuestion } from '../textbox-question';
 
 @Injectable({
@@ -9,17 +8,24 @@ import { TextboxQuestion } from '../textbox-question';
 })
 export class NewItemQuestionService {
 
- //   questions: QuestionBase<string | number>[] = [];
+  steppers: Array<string> = [
+    'Titulo',
+    'Categorização',
+    'Informações',
+    'Tags',
+    'Postagem'
+  ];
 
   constructor() { }
 
-  getQuestionsInfo() {
+  getQuestions() {
 
     let price = new TextboxQuestion<number>({
       key: 'price',
       label: 'Preço',
       type: 'number',
       required: true,
+      stepper: 'Informações',
       order: 5
     });
 
@@ -27,6 +33,7 @@ export class NewItemQuestionService {
       key: 'available_quantity',
       label: 'Quantidade disponível',
       type: 'number',
+      stepper: 'Informações',
       required: true,
       order: 6
     });
@@ -36,6 +43,7 @@ export class NewItemQuestionService {
       label: 'Titulo',
       type: 'text',
       required: true,
+      stepper: 'Titulo',
       order: 2
     });
 
@@ -44,6 +52,7 @@ export class NewItemQuestionService {
       label: 'Cliente(s)',
       required: true,
       multiple: true,
+      stepper: 'Postagem',
       order: 1
     });
 
@@ -51,6 +60,7 @@ export class NewItemQuestionService {
       key: 'listing_type_id',
       label: 'Tipo de publicação',
       required: true,
+      stepper: 'Informações',
       order: 3
     });
 
@@ -58,6 +68,7 @@ export class NewItemQuestionService {
       key: 'currency_id',
       label: 'Moeda',
       required: true,
+      stepper: 'Informações',
       order: 4
     });
 

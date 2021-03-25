@@ -9,6 +9,7 @@ export class QuestionBase<T> {
     controlType: string;
     type: string;
     multiple: boolean;
+    stepper: string;
     options: {key: string, value: string}[];
 
     constructor(options: {
@@ -22,6 +23,7 @@ export class QuestionBase<T> {
         type?: string;
         step?: number;
         min?: number;
+        stepper?: string;
         options?: {key: string, value: string}[];
       } = {}) {
       this.value = options.value;
@@ -35,5 +37,6 @@ export class QuestionBase<T> {
       this.multiple = !!options.multiple;
       this.step = options.key == 'price' ? 0.01 : options.key == 'available_quantity' ? 0 : undefined;
       this.min = options.key == 'price' ? 0.00 : options.key == 'available_quantity' ? 0 : undefined;
+      this.stepper = options.stepper || '';
     }
 }

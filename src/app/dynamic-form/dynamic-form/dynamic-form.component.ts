@@ -10,13 +10,15 @@ import { QuestionControlService } from '../question-control.service';
   styleUrls: ['./dynamic-form.component.css']
 })
 export class DynamicFormComponent implements OnInit {
+  @Input() steppers: Array<string> = [];
   @Input() questions: QuestionBase<string | number>[] | null = [];
   form!: FormGroup;
 
-  constructor(private qcs: QuestionControlService) {  }
+  constructor(private qcs: QuestionControlService) { }
 
-  ngOnInit() {
-    this.form = this.qcs.toFormGroup(this.questions);
+  ngOnInit(): void {
+    this.form = this.qcs.toFormGroup(this.questions, this.steppers);
+    console.log(this.form);
   }
 
   onSubmit() {

@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, Input, OnChanges } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, AbstractControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Client } from 'src/app/interfaces/interface_client';
 import { Currencies } from 'src/app/interfaces/interface_currencies';
@@ -15,7 +15,7 @@ import { QuestionBase } from '../question-base';
 })
 export class DynamicFormQuestionComponent implements AfterViewInit, OnChanges {
   @Input() question!: QuestionBase<string | number>;
-  @Input() form!: FormGroup;
+  @Input() form!: any;
 
   options!: Observable<{key: string, value: string}[]>;
   isValid!: boolean;
