@@ -77,6 +77,7 @@ import { ReviewComponent } from './index/item-view/review/review.component';
 import { VariationsComponent } from './item/info-item-dialog/variations/variations.component';
 import { AttributesComponent } from './item/info-item-dialog/attributes/attributes.component';
 import { MenuOptionsComponent } from './item/menu-options/menu-options.component';
+import { ProductViewComponent } from './item/product-view/product-view.component';
 
 
 @NgModule({
@@ -128,7 +129,8 @@ import { MenuOptionsComponent } from './item/menu-options/menu-options.component
     ReviewComponent,
     VariationsComponent,
     AttributesComponent,
-    MenuOptionsComponent
+    MenuOptionsComponent,
+    ProductViewComponent
   ],
   imports: [
     PipesModule,
