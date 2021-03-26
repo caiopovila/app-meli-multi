@@ -5,11 +5,7 @@ import { Client } from 'src/app/interfaces/interface_client';
 import { DataItemParam, Item, ItemsClient, RetItem } from 'src/app/interfaces/interface_item';
 import { ClientsService } from 'src/app/services/clients.service';
 import { ItemsService } from 'src/app/services/items.service';
-import { ConfirmDialogComponent } from '../question/confirm-dialog/confirm-dialog.component';
 import { FilterItemDialogComponent } from './filter-item-dialog/filter-item-dialog.component';
-import { InfoItemDialogComponent } from './info-item-dialog/info-item-dialog.component';
-import { QuestionItemDialogComponent } from './question-item-dialog/question-item-dialog.component';
-import { UpItemDialogComponent } from './up-item-dialog/up-item-dialog.component';
 
 @Component({
   selector: 'app-item',
@@ -83,42 +79,4 @@ export class ItemComponent implements OnInit {
       });
   }
 
-  deleteItem(itemId: string): void {
-    this.dialog.open(ConfirmDialogComponent,
-      {
-        data: true,
-        disableClose: true
-      }
-    ).afterClosed().subscribe((result: boolean) => {
-        if (result === true)
-          this.productsService.deleteItem(this.clientSelected, itemId)
-          .subscribe(retDeletion => {
-              this.getProducts();
-          });
-      });
-  }
-
-  ifoProduct(product: Item): void {
-    this.dialog.open(InfoItemDialogComponent,
-      {
-        data: product
-      }
-    );
-  }
-
-  upProduct(productId: string | number) {
-    this.dialog.open(UpItemDialogComponent,
-      {
-        data: productId
-      }
-    );
-  }
-
-  getQuestions(productId: string | number) {
-    this.dialog.open(QuestionItemDialogComponent,
-      {
-        data: { client: this.clientSelected, id: productId }
-      }
-    );
-  }
 }
