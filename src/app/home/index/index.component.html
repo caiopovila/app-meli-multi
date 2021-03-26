@@ -27,8 +27,8 @@
 
 </section>
 <br>
-<section *ngIf="results.length <= 0">
-  <section *ngIf="clientList" class="center">
+<section *ngIf="results.length <= 0" class="center">
+  <section *ngIf="clientList" >
     <h2> <mat-icon color="primary">wysiwyg</mat-icon> Obter notícias de: </h2>
     <mat-form-field>
       <mat-label>Cliente</mat-label>
@@ -40,6 +40,10 @@
       </mat-select>
     </mat-form-field>
   </section>
+
+  <br>
+    <mat-divider></mat-divider>
+  <br>
 
   <app-user-info *ngIf="clientSelected" class="center" [client_id]="clientSelected"></app-user-info>
 
