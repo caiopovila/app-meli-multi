@@ -1,1 +1,12 @@
-<p>data works!</p>
+<section *ngIf="data.shipping_modes">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title> <mat-icon color="primary">local_shipping</mat-icon> &nbsp;&nbsp; Métodos de envio permitidos:</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item *ngFor="let mode of (data.shipping_modes | shippingMode)" [matTooltip]="mode.description"> <mat-icon color="accent">check</mat-icon> &nbsp;&nbsp; {{mode.name}}</mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+</section>

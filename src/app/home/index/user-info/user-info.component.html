@@ -1,3 +1,6 @@
+<span class="mat-title" *ngIf="data">{{data.first_name}} {{data.last_name}}</span>
+
+<app-data *ngIf="data" [data]="data"></app-data>
 <app-balance *ngIf="balance || questions || visits" [balance]="balance" [questions]="questions" [visits]="visits"></app-balance>
 <app-status *ngIf="data" [status]="data.status"></app-status>
 <app-notice *ngIf="notices" [notices]="notices"></app-notice>
