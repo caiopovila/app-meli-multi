@@ -1,0 +1,23 @@
+<mat-card *ngIf="product">
+    <button mat-icon-button color="warn" style="float: right;" *ngIf="product.data.status == 'closed'" matTooltip="Deletar item" aria-label="Deletar item" (click)="deleteItem()"> <mat-icon>delete_forever</mat-icon></button>
+    <mat-icon color="accent" style="float: right;" *ngIf="product.data.status == 'under_review'" matTooltip="Sob revisão" aria-label="Sob revisão">remove_red_eye</mat-icon>
+    <mat-icon color="accent" style="float: right;" *ngIf="product.data.status == 'paused'" matTooltip="Pausado" aria-label="Pausado">pause_presentation</mat-icon>
+    <mat-card-header>
+        <mat-card-title>
+            <img mat-card-sm-image class="img-card" src={{product.data.secure_thumbnail}}>
+            {{product.data.title}}
+        </mat-card-title>
+        <mat-card-subtitle><span *ngIf="!product.data.price">Preço a combinar</span>{{product.data.price | currency: product.data.currency_id}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <p>#{{product.data.id}} <mat-icon *ngIf="!product.data.catalog_listing" matTooltip="Não está no catálogo" aria-label="Não está no catálogo" color="warn">error</mat-icon></p>
+        <p *ngIf="product.data.sold_quantity">Vendidos: {{product.data.sold_quantity}}</p>
+        <p *ngIf="product.data.stop_time">Expiração: {{ product.data.stop_time | date | uppercase }}</p>
+        <p *ngIf="product.data.available_quantity">Disponível: {{ product.data.available_quantity }}</p>
+    </mat-card-content>
+    <mat-card-actions align="end">
+        <button mat-button color="primary" (click)="ifoProduct()">Detalhes</button>
+        <button mat-button color="primary" (click)="getQuestions()">Perguntas</button>
+        <button mat-button color="primary" (click)="upProduct()">Atualizar</button>
+    </mat-card-actions>
+</mat-card>
