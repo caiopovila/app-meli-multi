@@ -8,7 +8,6 @@ import { ItemsService } from 'src/app/services/items.service';
 import { ConfirmDialogComponent } from '../question/confirm-dialog/confirm-dialog.component';
 import { FilterItemDialogComponent } from './filter-item-dialog/filter-item-dialog.component';
 import { InfoItemDialogComponent } from './info-item-dialog/info-item-dialog.component';
-import { NewItemDialogComponent } from './new-item-dialog/new-item-dialog.component';
 import { QuestionItemDialogComponent } from './question-item-dialog/question-item-dialog.component';
 import { UpItemDialogComponent } from './up-item-dialog/up-item-dialog.component';
 
@@ -97,14 +96,6 @@ export class ItemComponent implements OnInit {
               this.getProducts();
           });
       });
-  }
-
-  openNewItemDialog(): void {
-    this.dialog.open(NewItemDialogComponent,
-      {
-        disableClose: true
-      }
-    );
   }
 
   ifoProduct(product: Item): void {

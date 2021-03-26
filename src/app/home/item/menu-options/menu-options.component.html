@@ -1,0 +1,9 @@
+<button mat-icon-button color="primary" [matMenuTriggerFor]="menu" matTooltip="Opções de item"  aria-label="Menu de opções para itens">
+  <mat-icon>more_vert</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item (click)="openNewItemDialog()">
+    <mat-icon>add_shopping_cart</mat-icon>
+    <span>Nova publicação de produto</span>
+  </button>
+</mat-menu>
