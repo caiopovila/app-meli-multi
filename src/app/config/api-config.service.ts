@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { environment } from 'src/environments/environment';
+import { MatDialog } from '@angular/material/dialog';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +13,12 @@ export class ApiConfigService {
   constructor(
     public http: HttpClient,
     public route: Router,
-    private messageBar: MatSnackBar
+    private messageBar: MatSnackBar,
+    private dialog: MatDialog
     ) { }
 
   getUrlApi(): string {
-    if (environment.production) 
+    if (environment.production)
       return "https://multicontasmeli.com.br/API";
     else
       return "http://localhost:3000/API";
@@ -30,6 +32,8 @@ export class ApiConfigService {
     if ('status' in error)
       switch (error.status) {
         case 403:
+          sessionStorage.clear();
+          this.dialog.closeAll();
           this.route.navigate(['./']);
           break;
         case 401:
