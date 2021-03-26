@@ -76,6 +76,7 @@ import { ClaimDetailsComponent } from './claim/claim-details/claim-details.compo
 import { ReviewComponent } from './index/item-view/review/review.component';
 import { VariationsComponent } from './item/info-item-dialog/variations/variations.component';
 import { AttributesComponent } from './item/info-item-dialog/attributes/attributes.component';
+import { MenuOptionsComponent } from './item/menu-options/menu-options.component';
 
 
 @NgModule({
@@ -126,7 +127,8 @@ import { AttributesComponent } from './item/info-item-dialog/attributes/attribut
     ClaimDetailsComponent,
     ReviewComponent,
     VariationsComponent,
-    AttributesComponent
+    AttributesComponent,
+    MenuOptionsComponent
   ],
   imports: [
     PipesModule,
