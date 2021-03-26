@@ -1,87 +1,82 @@
 <br>
-<section *ngIf="clientData.shipping_modes">
-  <h2> <mat-icon color="primary">local_shipping</mat-icon> &nbsp;&nbsp; Métodos de envio permitidos: </h2>
-  <mat-list>
-    <mat-list-item *ngFor="let mode of (clientData.shipping_modes | shippingMode)" [matTooltip]="mode.description"> <mat-icon color="accent">check</mat-icon> &nbsp;&nbsp; {{mode.name}}</mat-list-item>
-  </mat-list>
-</section>
+
 <mat-divider></mat-divider>
 <br>
 <br>
-<!-- 
+<!--
 <mat-form-field>
     <mat-label for="identification_type">Tipo de identidade</mat-label>
     <input type="text" matInput name="identification_type" id="identification_type" [(ngModel)]="clientData.identification.type" disabled>
 </mat-form-field>
- -->  
+ -->
       &nbsp;&nbsp;
 
   <mat-form-field>
     <mat-label for="identification_number">Número do(a) {{clientData.identification.type}}</mat-label>
     <input type="text" matInput disabled name="identification_number" id="identification_number" [(ngModel)]="clientData.identification.number">
   </mat-form-field>
-  
+
       &nbsp;&nbsp;
 
   <mat-form-field>
-    <mat-label for="address">Logradouro</mat-label>
+    <mat-label for="address">Endereço</mat-label>
     <input type="text" disabled matInput name="address" id="address" [(ngModel)]="clientData.address.address">
   </mat-form-field>
-  
+
       &nbsp;&nbsp;
 
   <mat-form-field>
     <mat-label for="state">Estado</mat-label>
     <input type="text" disabled matInput name="state" id="state" [(ngModel)]="clientData.address.state">
   </mat-form-field>
-  
+
       &nbsp;&nbsp;
 
   <mat-form-field>
     <mat-label for="city">Cidade</mat-label>
     <input type="text" disabled matInput name="city" id="city" [(ngModel)]="clientData.address.city">
   </mat-form-field>
-  
+
       &nbsp;&nbsp;
 
   <mat-form-field>
     <mat-label for="zip_code">CEP</mat-label>
     <input type="text" disabled matInput name="zip_code" id="zip_code" [(ngModel)]="clientData.address.zip_code">
   </mat-form-field>
-  
+
       &nbsp;&nbsp;
 
   <mat-form-field>
     <mat-label for="area_code">Código de área</mat-label>
     <input type="text" matInput name="area_code" id="area_code" [(ngModel)]="clientData.phone.area_code">
   </mat-form-field>
-  
+
       &nbsp;&nbsp;
 
   <mat-form-field>
     <mat-label for="number">Número</mat-label>
     <input type="text" matInput name="number" id="number" [(ngModel)]="clientData.phone.number">
   </mat-form-field>
-  
+
       &nbsp;&nbsp;
 
   <mat-form-field>
     <mat-label for="first_name">Primeiro nome</mat-label>
     <input type="text" disabled matInput name="first_name" id="first_name" [(ngModel)]="clientData.first_name">
   </mat-form-field>
-  
+
       &nbsp;&nbsp;
 
   <mat-form-field>
     <mat-label for="last_name">Último nome</mat-label>
     <input type="text" disabled matInput name="last_name" id="last_name" [(ngModel)]="clientData.last_name">
   </mat-form-field>
-  
+
       &nbsp;&nbsp;
 
   <mat-form-field>
     <mat-label for="nickname">nickname</mat-label>
     <input type="text" matInput disabled name="nickname" id="nickname" [(ngModel)]="clientData.nickname">
   </mat-form-field>
-  
+
       &nbsp;&nbsp;
