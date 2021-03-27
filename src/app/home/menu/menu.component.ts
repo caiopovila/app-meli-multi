@@ -18,7 +18,7 @@ export class MenuComponent implements OnInit, OnChanges {
     {link: './questions', name: 'Perguntas', icon: 'question_answer'},
     {link: './items', name: 'Anúncios', icon: 'feed'},
     {link: './sellers', name: 'Monitoramento', icon: 'legend_toggle'},
-    {link: './pricing', name: 'Precificação', icon: 'price_change'},
+//     {link: './pricing', name: 'Precificação', icon: 'price_change'},
     {link: './config', name: 'Configurações', icon: 'manage_accounts'}
   ]
 
@@ -52,7 +52,7 @@ export class MenuComponent implements OnInit, OnChanges {
 
   getNotification() {
     this.infoService.getNotifications().subscribe((retNotf: Array<MessagesNotification> | any) => {
-      if (retNotf && retNotf.length > 0) 
+      if (retNotf && retNotf.length > 0)
         this.listNotification = retNotf;
     })
   }
